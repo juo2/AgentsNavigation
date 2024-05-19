@@ -17,26 +17,58 @@ namespace ProjectDawn.Navigation.Sample.Zerg
 
         public bool MoveCamera(float borderSize, out float2 direction)
         {
-            float2 position = new float2(Input.mousePosition.x, Input.mousePosition.y);
-            Rect screenRect = new Rect(-1, -1, Screen.width + 2, Screen.height + 2);
-            Rect safeRect = new Rect(borderSize, borderSize, Screen.width - borderSize * 2, Screen.height - borderSize * 2);
-
-            // If position out of screen do not move camera, it can happens if mouse if not cofined
-            if (!screenRect.Contains(position))
+            //float2 position = new float2(Input.mousePosition.x, Input.mousePosition.y);
+            if (Input.GetKey(KeyCode.W))
             {
-                direction = 0;
-                return false;
-            }
+                direction = new Vector2(0.0f, 1.0f);
 
-            // Do not move camera if safe screen part
-            if (safeRect.Contains(position))
-            {
-                direction = 0;
-                return false;
+                return true;
+
             }
-            float2 screenCenter = new float2(Screen.width, Screen.height) * 0.5f;
-            direction = math.normalizesafe(position - screenCenter);
-            return true;
+            else if (Input.GetKey(KeyCode.S))
+            {
+                direction = new Vector2(0.0f, -1.0f);
+
+                return true;
+
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                direction = new Vector2(-1.0f, 0.0f);
+
+
+                return true;
+
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                direction = new Vector2(1.0f, 0.0f);
+
+                return true;
+
+            }
+            direction = Vector2.zero;
+
+            return false;
+
+            //Rect screenRect = new Rect(-1, -1, Screen.width + 2, Screen.height + 2);
+            //Rect safeRect = new Rect(borderSize, borderSize, Screen.width - borderSize * 2, Screen.height - borderSize * 2);
+
+            //// If position out of screen do not move camera, it can happens if mouse if not cofined
+            //if (!screenRect.Contains(position))
+            //{
+            //    direction = 0;
+            //    return false;
+            //}
+
+            //// Do not move camera if safe screen part
+            //if (safeRect.Contains(position))
+            //{
+            //    direction = 0;
+            //    return false;
+            //}
+            //float2 screenCenter = new float2(Screen.width, Screen.height) * 0.5f;
+            //direction = math.normalizesafe(position - screenCenter);
         }
 
         public bool Confirmation(out float3 position)

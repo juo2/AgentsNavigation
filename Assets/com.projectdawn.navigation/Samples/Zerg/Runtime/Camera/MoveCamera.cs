@@ -15,7 +15,7 @@ namespace ProjectDawn.Navigation.Sample.Zerg
 
         void Start()
         {
-            Cursor.lockState = CursorLockMode.Confined;
+            //Cursor.lockState = CursorLockMode.Confined;
             m_Gestures = GameObject.FindObjectOfType<Gestures>(true);
         }
 
